@@ -9,9 +9,18 @@ Input: "Alexa, what customers are in my install base?"
 Output: "The following customers are in your install base: CDPH, LDC, CHP, DMV, FTB,...."
 
 Input: "What installed at CDPH?"
-Output: "CDPH has the following hardware installed: 3 VNX5600s, 3 XtremIO, 2 DataDomain 4500s', etc..."
+Output: "CDPH has the following hardware installed: 3 VNX5600s, 3 XtremIO, 2 DataDomain 
+4500s', etc..."
 
 Input: "What are the serial numbers of CDPH's XtremIO's?"
 Output: "XtremIO serial numbers: FM123456, FM987543, FM45678"
 
 These are just a few examples. More will be written here with actual usage.
+
+using sqlite3 database 
+https://www.sqlite.org
+
+importing CSV file derived from emc opsconsole
+
+creating python wrapper functions that are hard-coded for specific queries and will add
+more as we go along
