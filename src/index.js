@@ -392,21 +392,21 @@ function getWelcomeResponse(callback) {
         speechOutput = "EMC Install base. Please query about customer install base and I will do my best to respond with accurate information. ",
         shouldEndSession = false,
 
-        gameQuestions = populateGameQuestions(),
-        correctAnswerIndex = Math.floor(Math.random() * (ANSWER_COUNT)), // Generate a random index for the correct answer, from 0 to 3
-        roundAnswers = populateRoundAnswers(gameQuestions, 0, correctAnswerIndex),
+        //gameQuestions = populateGameQuestions(),
+        //correctAnswerIndex = Math.floor(Math.random() * (ANSWER_COUNT)), // Generate a random index for the correct answer, from 0 to 3
+        //roundAnswers = populateRoundAnswers(gameQuestions, 0, correctAnswerIndex),
 
-        currentQuestionIndex = 0,
-        spokenQuestion = Object.keys(questions[gameQuestions[currentQuestionIndex]])[0],
-        repromptText = "Question 1. " + spokenQuestion + " ",
+        //currentQuestionIndex = 0,
+        //spokenQuestion = Object.keys(questions[gameQuestions[currentQuestionIndex]])[0],
+        repromptText = "Question 1. " + "You are a dirty bastard + " ",
 
-        i, j;
+       // i, j;
 
-    for (i = 0; i < ANSWER_COUNT; i++) {
+   // for (i = 0; i < ANSWER_COUNT; i++) {
         repromptText += (i+1).toString() + ". " + roundAnswers[i] + ". "
-    }
-    speechOutput += repromptText;
-    sessionAttributes = {
+   // }
+    //speechOutput += repromptText;
+    /*sessionAttributes = {
         "speechOutput": repromptText,
         "repromptText": repromptText,
         "currentQuestionIndex": currentQuestionIndex,
@@ -415,7 +415,7 @@ function getWelcomeResponse(callback) {
         "score": 0,
         "correctAnswerText":
             questions[gameQuestions[currentQuestionIndex]][Object.keys(questions[gameQuestions[currentQuestionIndex]])[0]][0]
-    };
+    };*/
     callback(sessionAttributes,
         buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
 }

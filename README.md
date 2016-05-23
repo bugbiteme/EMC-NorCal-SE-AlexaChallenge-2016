@@ -26,3 +26,6 @@ creating python wrapper functions that are hard-coded for specific queries and w
 more as we go along
 
 test app usage: "python main.py"
+
+Alexa tutorial: https://developer.amazon.com/public/community/post/TxDJWS16KUPVKO/New-Alexa-Skills-Kit-Template-Build-a-Trivia-Skill-in-under-an-Hour
+
