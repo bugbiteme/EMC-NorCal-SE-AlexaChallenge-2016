@@ -24,3 +24,5 @@ importing CSV file derived from emc opsconsole
 
 creating python wrapper functions that are hard-coded for specific queries and will add
 more as we go along
+
+test app usage: "python main.py"
