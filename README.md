@@ -4,7 +4,8 @@ Code and design docs for Alexa Challenge
 The intention of this app is to be able to query EMC install base information
 from the Amazon Alexa API
 
-Example:
+# Examples
+
 Input: "Alexa, what customers are in my install base?"
 Output: "The following customers are in your install base: CDPH, LDC, CHP, DMV, FTB,...."
 
@@ -17,8 +18,7 @@ Output: "XtremIO serial numbers: FM123456, FM987543, FM45678"
 
 These are just a few examples. More will be written here with actual usage.
 
-using sqlite3 database 
-https://www.sqlite.org
+# Notes
 
 importing CSV file derived from emc opsconsole
 
@@ -27,5 +27,9 @@ more as we go along
 
 test app usage: "python main.py"
 
+
+# Resources
+
 Alexa tutorial: https://developer.amazon.com/public/community/post/TxDJWS16KUPVKO/New-Alexa-Skills-Kit-Template-Build-a-Trivia-Skill-in-under-an-Hour
 
+using sqlite3 database: https://www.sqlite.org
