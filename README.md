@@ -8,7 +8,7 @@ Example:
 Input: "Alexa, what customers are in my install base?"
 Output: "The following customers are in your install base: CDPH, LDC, CHP, DMV, FTB,...."
 
-Input: "What installed at CDPH?"
+Input: "What is installed at CDPH?"
 Output: "CDPH has the following hardware installed: 3 VNX5600s, 3 XtremIO, 2 DataDomain 
 4500s', etc..."
 
