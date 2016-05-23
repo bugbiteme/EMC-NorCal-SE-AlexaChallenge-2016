@@ -32,4 +32,6 @@ test app usage: "python main.py"
 
 Alexa tutorial: https://developer.amazon.com/public/community/post/TxDJWS16KUPVKO/New-Alexa-Skills-Kit-Template-Build-a-Trivia-Skill-in-under-an-Hour
 
-using sqlite3 database: https://www.sqlite.org
+Using sqlite3 database: https://www.sqlite.org
+
+ask-alexa-pykit: https://github.com/anjishnu/ask-alexa-pykit/tree/python_lambda_0.3_release
