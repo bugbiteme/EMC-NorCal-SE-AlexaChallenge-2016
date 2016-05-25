@@ -1,4 +1,4 @@
-# webpy_skeleton
+# webappform
 This is a skeleton project for creating a python project using the web.py framework
 
 #prereqs
