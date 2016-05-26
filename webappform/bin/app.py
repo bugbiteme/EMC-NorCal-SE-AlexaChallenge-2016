@@ -1,6 +1,4 @@
 import web
-#import sqlite3 as lite
-#import sys
 import sql_wrapper as sql
 
 
@@ -19,7 +17,7 @@ class Index(object):
         
         if form.name == "version":
             greeting = sql.getSQLiteVersion()
-        elif form.name == "all_customers":
+        elif form.name == "ib_sites":
             greeting = sql.getInstallBaseCust()
         elif form.name == "ib_vnx":
         	greeting = sql.getInstallBaseVNX()

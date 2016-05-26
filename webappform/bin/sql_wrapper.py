@@ -1,5 +1,6 @@
 import sqlite3 as lite
 import sys
+import json
 
 ##############################################################
 # This just gives you the version of sqlite
@@ -36,12 +37,16 @@ def getInstallBaseCust():
 	
 		cur = con.cursor()
 		cur.execute('select distinct CS_CUSTOMER_NAME from tbl_installbase')
-	
+		
 		rows = cur.fetchall()
-	
+		dic = {}
+		i = 0
 		for row in rows:
 			result += str(row[0]) + "\n"
+			dic["site_name" + str(i)] = str(row[0])
+			i+=1
 	
+		print json.dumps(dic)
 		return result
 		
 	except lite.Error, e:
@@ -58,7 +63,6 @@ def getInstallBaseCust():
 # this will give you the install base for a particular customer
 ##############################################################
 def getInstallBaseVNX():
-	# type: () -> object
 	try:
 		con = lite.connect('installbase.db')
 	
@@ -74,6 +78,8 @@ def getInstallBaseVNX():
 			result += "model: " + row[1] + ".\n"
 			result += "serial number: " + row[2] + ".\n"
 			
+		#print json.dumps(rows)
+		
 		return result
 	
 	except lite.Error, e:
@@ -88,3 +94,8 @@ def getInstallBaseVNX():
 # ############################################################ #
 # ################## END OF FUNCTION DEFS #################### #
 # ############################################################ #
+
+# begin tests
+
+# getInstallBaseCust()
+# getInstallBaseVNX()
