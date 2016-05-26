@@ -12,7 +12,7 @@ def getSQLiteVersion():
 	
 		data = cur.fetchone()
 	
-		print "SQLite version: %s" % data
+		return "SQLite version: " + str(data)
 	
 	except lite.Error, e:
 
@@ -26,6 +26,7 @@ def getSQLiteVersion():
 
 def getInstallBaseCust():
 	try:
+		result = "Here are all of your customers:\n"
 		con = lite.connect('installbase.db')
 	
 		cur = con.cursor()
@@ -33,10 +34,11 @@ def getInstallBaseCust():
 	
 		rows = cur.fetchall()
 	
-		print "Here are all of your customers:"
 		for row in rows:
-			print row[0]
+			result += str(row[0]) + "\n"
 	
+		return result
+		
 	except lite.Error, e:
 
 		print "Error %s:" % e.args[0]
@@ -56,11 +58,13 @@ def getInstallBaseVNX():
 	
 		rows = cur.fetchall()
 	
-		print "Here are all of your customers:"
+		result = "Here are all of your VNX systems:\n"
 		for row in rows:
-			print row[0]
-			print row[1]
-			print row[2]
+			result += row[0] + "\n"
+			result += row[1] + "\n"
+			result += row[2] + "\n"
+			
+		return result
 	
 	except lite.Error, e:
 
@@ -73,6 +77,6 @@ def getInstallBaseVNX():
 			con.close()
 						
 
-getSQLiteVersion()
-getInstallBaseCust()
-getInstallBaseVNX()
+print getSQLiteVersion()
+print getInstallBaseCust()
+print getInstallBaseVNX()
