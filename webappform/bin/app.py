@@ -2,10 +2,10 @@ import web
 import sqlite3 as lite
 import sys
 
-con = None
+# con = None
 
 ##############################################################
-#This just gives you the version of sqlite
+# This just gives you the version of sqlite
 ##############################################################
 def getSQLiteVersion():
 	try:
@@ -16,33 +16,7 @@ def getSQLiteVersion():
 	
 		data = cur.fetchone()
 	
-		return "SQLite version: " + data
-	
-	except lite.Error, e:
-
-		return "Error " + ":" + e.args[0]
-		sys.exit(1)
-	
-	finally:
-
-		if con:
-			con.close()
-			
-##############################################################			
-#this will give you a list of customers from your install base
-##############################################################
-def getInstallBaseCust():
-	try:
-		con = lite.connect('installbase.db')
-	
-		cur = con.cursor()
-		cur.execute('select distinct CS_CUSTOMER_NAME from tbl_installbase')
-	
-		rows = cur.fetchall()
-	
-		print "Here are all of your customers:"
-		for row in rows:
-			print row[0]
+		return "SQLite version: " + str(data)
 	
 	except lite.Error, e:
 
@@ -54,10 +28,39 @@ def getInstallBaseCust():
 		if con:
 			con.close()
 			
+##############################################################			
+# this will give you a list of customers from your install base
 ##############################################################
-#this will give you the install base for a particular customer
+def getInstallBaseCust():
+	try:
+		result = "Here are all of your customers:\n"
+		con = lite.connect('installbase.db')
+	
+		cur = con.cursor()
+		cur.execute('select distinct CS_CUSTOMER_NAME from tbl_installbase')
+	
+		rows = cur.fetchall()
+	
+		for row in rows:
+			result += str(row[0]) + "\n"
+	
+		return result
+		
+	except lite.Error, e:
+
+		print "Error %s:" % e.args[0]
+		sys.exit(1)
+	
+	finally:
+
+		if con:
+			con.close()
+			
+##############################################################
+# this will give you the install base for a particular customer
 ##############################################################
 def getInstallBaseVNX():
+	# type: () -> object
 	try:
 		con = lite.connect('installbase.db')
 	
@@ -66,11 +69,14 @@ def getInstallBaseVNX():
 	
 		rows = cur.fetchall()
 	
-		print "Here are all of your customers:"
+		result = ""
+		result = "You have " + str(len(rows)) + " VNX systems in your install base:\n"
 		for row in rows:
-			print row[0]
-			print row[1]
-			print row[2]
+			result += "location: " + row[0] + ".\n"
+			result += "model: " + row[1] + ".\n"
+			result += "serial number: " + row[2] + ".\n"
+			
+		return result
 	
 	except lite.Error, e:
 
@@ -78,30 +84,33 @@ def getInstallBaseVNX():
 		sys.exit(1)
 	
 	finally:
-
 		if con:
 			con.close()
-##############################################################			
-################### END OF FUNCTION DEFS #####################
-##############################################################
-			
-urls = (
-  '/hello', 'Index'
-)
+
+# ############################################################ #
+# ################## END OF FUNCTION DEFS #################### #
+# ############################################################ #
+
+urls = ('/hello', 'Index')
 
 
 app = web.application(urls, globals())
 
 render = web.template.render('templates/')
 
+
 class Index(object):
     def GET(self):
         form = web.input(name="Nobody")
         
         if form.name == "version":
-        	greeting = getSQLiteVersion()
+            greeting = getSQLiteVersion()
+        elif form.name == "all_customers":
+            greeting = getInstallBaseCust()
+        elif form.name == "ib_vnx":
+        	greeting = getInstallBaseVNX()
         else:
-        	greeting = "Hello, %s" % form.name
+            greeting = "Hello, %s" % form.name
 
         return render.index(greeting = greeting)
 
