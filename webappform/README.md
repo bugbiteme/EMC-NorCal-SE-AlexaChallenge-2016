@@ -1,5 +1,6 @@
 # webappform
-This is a skeleton project for creating a python project using the web.py framework
+This is the structure for the web api which will accept url parameters.
+It is using the web.py framework
 
 #prereqs
 
@@ -15,4 +16,9 @@ $pip install [distribute|nose|virtualenv]
 #To Run
 $ python bin/app.py 
 
-point your browser to localhost:8080
+point your browser to localhost:8080/hello?name=<input parameters>
+
+supported parameters:
+ - version (version of sqlite)
+ - ib_sites (all sites in db)
+ - ib_vnx (all vnx system in db)
