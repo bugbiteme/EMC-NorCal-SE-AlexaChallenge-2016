@@ -35,3 +35,5 @@ Alexa tutorial: https://developer.amazon.com/public/community/post/TxDJWS16KUPVK
 Using sqlite3 database: https://www.sqlite.org
 
 ask-alexa-pykit: https://github.com/anjishnu/ask-alexa-pykit/tree/python_lambda_0.3_release
+
+http://tobuildsomething.com/2015/08/14/Amazon-Echo-Alexa-Tutorial-The-Definitive-Guide-to-Coding-an-Alexa-Skill/
