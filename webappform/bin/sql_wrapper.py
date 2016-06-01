@@ -32,7 +32,7 @@ def getSQLiteVersion():
 ##############################################################
 def getInstallBaseCust():
 	try:
-		result = "Here are all of your customers:\n"
+		result = "Here are all of your customers: "
 		con = lite.connect('installbase.db')
 	
 		cur = con.cursor()
@@ -40,14 +40,17 @@ def getInstallBaseCust():
 		
 		rows = cur.fetchall()
 		dic = {}
+		outputDic = {}
 		i = 0
 		for row in rows:
-			result += str(row[0]) + "\n"
+			result += str(row[0]) + ". "
 			dic["site_name" + str(i)] = str(row[0])
 			i+=1
 	
-		print json.dumps(dic)
-		return result
+		#print json.dumps(dic)
+		outputDic["text"] = result
+		
+		return json.dumps(outputDic)
 		
 	except lite.Error, e:
 
@@ -72,15 +75,18 @@ def getInstallBaseVNX():
 		rows = cur.fetchall()
 	
 		result = ""
-		result = "You have " + str(len(rows)) + " VNX systems in your install base:\n"
+		result = "You have " + str(len(rows)) + " VNX systems in your install base: "
 		for row in rows:
-			result += "location: " + row[0] + ".\n"
-			result += "model: " + row[1] + ".\n"
-			result += "serial number: " + row[2] + ".\n"
+			result += "location: " + row[0] + ". "
+			result += "model: " + row[1] + ". "
+			result += "serial number: " + row[2] + ". "
 			
 		#print json.dumps(rows)
 		
-		return result
+		outputDic = {}
+		outputDic["text"] = result
+		
+		return json.dumps(outputDic)
 	
 	except lite.Error, e:
 
