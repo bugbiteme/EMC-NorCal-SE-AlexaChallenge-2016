@@ -1,15 +1,13 @@
 import web
+import json
 import sql_wrapper as sql
 
 
 
-urls = ('/hello', 'Index')
+urls = ('/ibResponse.json', 'Index')
 
 
 app = web.application(urls, globals())
-
-render = web.template.render('templates/')
-
 
 class Index(object):
     def GET(self):
@@ -22,9 +20,9 @@ class Index(object):
         elif form.name == "ib_vnx":
         	greeting = sql.getInstallBaseVNX()
         else:
-            greeting = "Hello, %s" % form.name
+            greeting = "{\"text\": \"invalid parameter\"}"
 
-        return render.index(greeting = greeting)
+        return greeting
 
 if __name__ == "__main__":
     app.run()
