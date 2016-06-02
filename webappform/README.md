@@ -16,7 +16,7 @@ $pip install [distribute|nose|virtualenv]
 #To Run
 $ python bin/app.py 
 
-point your browser to localhost:8080/hello?name=<input parameters>
+point your browser to http://localhost:8080/ibResponse.json?name=<input parameters>
 
 supported parameters:
  - version (version of sqlite)
