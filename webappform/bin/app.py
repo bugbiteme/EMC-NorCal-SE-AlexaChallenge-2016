@@ -12,17 +12,16 @@ app = web.application(urls, globals())
 class Index(object):
     def GET(self):
         form = web.input(name="Nobody")
+        web.header('Content-Type', 'application/json')
         
         if form.name == "version":
             greeting = sql.getSQLiteVersion()
         elif form.name == "ib_sites":
-            greeting = sql.getInstallBaseCust()
+            return json.dumps(sql.getInstallBaseCust())
         elif form.name == "ib_vnx":
-        	greeting = sql.getInstallBaseVNX()
+        	return json.dumps(sql.getInstallBaseVNX())
         else:
-            greeting = "{\"text\": \"invalid parameter\"}"
-
-        return greeting
+            return json.dumps({"text": "invalid parameter"})
 
 if __name__ == "__main__":
     app.run()

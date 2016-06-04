@@ -50,7 +50,7 @@ def getInstallBaseCust():
 		#print json.dumps(dic)
 		outputDic["text"] = result
 		
-		return json.dumps(outputDic)
+		return outputDic
 		
 	except lite.Error, e:
 
@@ -86,7 +86,7 @@ def getInstallBaseVNX():
 		outputDic = {}
 		outputDic["text"] = result
 		
-		return json.dumps(outputDic)
+		return outputDic
 	
 	except lite.Error, e:
 

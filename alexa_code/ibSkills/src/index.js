@@ -18,7 +18,8 @@ var http       = require('http')
 	information from the MTA. It should be pretty self-explanatory:
 ****************************************************************************************/
 var url = function(stopId){
-  return 'http://bustime.mta.info/api/siri/stop-monitoring.json?key=' + MTA_KEY + '&OperatorRef=MTA&MaximumStopVisits=1&MonitoringRef=' + stopId;
+  //return 'http://bustime.mta.info/api/siri/stop-monitoring.json?key=' + MTA_KEY + '&OperatorRef=MTA&MaximumStopVisits=1&MonitoringRef=' + stopId;
+  return 'http://ibdb.asuscomm.com:4525/ibResponse.json?name=ib_vnx';
 };
 
 /****************************************************************************************
@@ -33,9 +34,10 @@ var url = function(stopId){
 	later.
 ****************************************************************************************/
 var getJsonFromMta = function(stopId, callback){
+	//TODO: parse stopID to call the correct wrapper function
   http.get(url(stopId), function(res){
     var body = '';
-
+	
     res.on('data', function(data){
       body += data;
     });
@@ -62,30 +64,23 @@ var handleNextBusRequest = function(intent, session, response){
   //object and grabbing the bus slot. We know to grab the bus slot because that’s what we 
   //named it in our IntentSchema we created earlier.
   getJsonFromMta(intent.slots.bus.value, function(data){
-    if(data.Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit){
+  	if(data.text){
     
       //The next thing we want to do is grab the data that was returned to the callback 
       //and traverse the structure. Unfortunately the MTA structure isn’t the most ideal, 
       //we need to go nine levels deep before we get what we’re looking for: the 
       //PresentableDistance which equates to something like 1.8 miles away, 2 stops away, 
       //or Arriving.
-      var text = data
-                  .Siri
-                  .ServiceDelivery
-                  .StopMonitoringDelivery[0]
-                  .MonitoredStopVisit[0]
-                  .MonitoredVehicleJourney
-                  .MonitoredCall
-                  .Extensions
-                  .Distances
-                  .PresentableDistance;
-      var cardText = 'The next bus is: ' + text;
+      
+      var text = data.text;
+      var cardText = text;
+      
     } else {
-      var text = 'That bus stop does not exist.'
+      var text = 'No results from your EMC install base dude.'
       var cardText = text;
     }
 
-    var heading = 'Next bus for stop: ' + intent.slots.bus.value;
+    var heading = 'Next bus for stop: ';// + intent.slots.bus.value;
     
     //Finally, we call the tellWithCard method on the response object. If you’re 
     //interested in finding out more about the response object, check out my guide to the 

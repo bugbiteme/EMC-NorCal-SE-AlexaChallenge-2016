@@ -1,5 +1,6 @@
 // Alexa SDK for JavaScript v1.0.00
-// Copyright (c) 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved. Use is subject to license terms.
+// Copyright (c) 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved. Use is
+// subject to license terms.
 'use strict';
 function AlexaSkill(appId) {
     this._appId = appId;
