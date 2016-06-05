@@ -96,6 +96,42 @@ def getInstallBaseVNX():
 	finally:
 		if con:
 			con.close()
+			
+			
+##############################################################
+# this will give you the install base for all Isilon systems
+##############################################################
+def getInstallBaseISILON():
+	try:
+		con = lite.connect('installbase.db')
+	
+		cur = con.cursor()
+		cur.execute('select CS_CUSTOMER_NAME, PRODUCT_GROUP, ITEM_SERIAL_NUMBER from tbl_installbase where PRODUCT_GROUP like \'Isilon%\'')
+	
+		rows = cur.fetchall()
+	
+		result = ""
+		result = "You have " + str(len(rows)) + " Isilon systems in your install base: "
+		for row in rows:
+			result += "location: " + row[0] + ". "
+			result += "model: " + row[1] + ". "
+			result += "serial number: " + row[2] + ". "
+			
+		#print json.dumps(rows)
+		
+		outputDic = {}
+		outputDic["text"] = result
+		
+		return outputDic
+	
+	except lite.Error, e:
+
+		print "Error %s:" % e.args[0]
+		sys.exit(1)
+	
+	finally:
+		if con:
+			con.close()
 
 # ############################################################ #
 # ################## END OF FUNCTION DEFS #################### #
@@ -104,4 +140,5 @@ def getInstallBaseVNX():
 # begin tests
 
 # getInstallBaseCust()
-# getInstallBaseVNX()
+#getInstallBaseVNX()
+#getInstallBaseISILON()

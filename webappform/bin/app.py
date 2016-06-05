@@ -20,6 +20,8 @@ class Index(object):
             return json.dumps(sql.getInstallBaseCust())
         elif form.name == "ib_vnx":
         	return json.dumps(sql.getInstallBaseVNX())
+        elif form.name == "isilon":
+        	return json.dumps(sql.getInstallBaseISILON())
         else:
             return json.dumps({"text": "invalid parameter"})
 
