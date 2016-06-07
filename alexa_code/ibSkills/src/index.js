@@ -19,7 +19,8 @@ var http       = require('http')
 ****************************************************************************************/
 var url = function(stopId){
   //return 'http://bustime.mta.info/api/siri/stop-monitoring.json?key=' + MTA_KEY + '&OperatorRef=MTA&MaximumStopVisits=1&MonitoringRef=' + stopId;
-  return 'http://ibdb.asuscomm.com:4525/ibResponse.json?name=ib_vnx';
+  return 'http://ibdb.asuscomm.com:4525/ibResponse.json?name=' + stopId; //ib_vnx';
+  
 };
 
 /****************************************************************************************
@@ -63,7 +64,7 @@ var handleNextBusRequest = function(intent, session, response){
   //The first is intent.slots.bus.value. We are reaching a few levels deep into the intent 
   //object and grabbing the bus slot. We know to grab the bus slot because that’s what we 
   //named it in our IntentSchema we created earlier.
-  getJsonFromMta(intent.slots.bus.value, function(data){
+  getJsonFromMta(intent.slots.storage.value, function(data){
   	if(data.text){
     
       //The next thing we want to do is grab the data that was returned to the callback 
@@ -80,7 +81,7 @@ var handleNextBusRequest = function(intent, session, response){
       var cardText = text;
     }
 
-    var heading = 'Next bus for stop: ';// + intent.slots.bus.value;
+    var heading = 'EMC Install Base Results';// + intent.slots.bus.value;
     
     //Finally, we call the tellWithCard method on the response object. If you’re 
     //interested in finding out more about the response object, check out my guide to the 
