@@ -120,7 +120,7 @@ BusSchedule.prototype.eventHandlers.onLaunch = function(launchRequest, session, 
   var output = 'Welcome to EMC Install Base. ' +
     'Ask me something about your EMC customer install base and I shall do my best to get you an answer.';
 
-  var reprompt = 'So what do you want me to query about your install base?';
+  var reprompt = 'So. What do you want me to query about your install base?';
 
   response.ask(output, reprompt);
 };
